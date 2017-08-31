@@ -1,0 +1,28 @@
+From 12191ea192270b477b1b5efbe764206b23babb86 Mon Sep 17 00:00:00 2001
+From: Athenas Jimenez Gonzalez <athenas.jimenez.gonzalez@intel.com>
+Date: Tue, 29 Aug 2017 20:39:39 +0000
+Subject: [PATCH] a2
+
+---
+ ivysettings.xml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/ivysettings.xml b/ivysettings.xml
+index 1d06c40..cfc68ca 100644
+--- a/ivysettings.xml
++++ b/ivysettings.xml
+@@ -18,9 +18,9 @@
+ -->
+ 
+   <property name="repo.maven.org"
+-    value="https://repo1.maven.org/maven2/" override="false"/>
++    value="file://${localRepoDir}/.m2/repository/" override="false"/>
+   <property name="repo.jboss.org"
+-    value="https://repository.jboss.org/nexus/content/groups/public/" override="false"/>
++    value="file://${localRepoDir}/.m2/repository/" override="false"/>
+   <property name="maven2.pattern"
+     value="[organisation]/[module]/[revision]/[module]-[revision]"/>
+   <property name="maven2.pattern.ext" value="${maven2.pattern}.[ext]"/>
+-- 
+2.14.1
+
