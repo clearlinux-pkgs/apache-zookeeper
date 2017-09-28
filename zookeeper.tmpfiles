@@ -1,0 +1,3 @@
+d /var/lib/zookeeper 0755 zookeeper zookeeper - -
+d /var/lib/zookeeper/data 0755 zookeeper zookeeper - -
+d /var/lib/zookeeper/logs 0755 zookeeper zookeeper - -

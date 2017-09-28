@@ -4,8 +4,11 @@ Release  : 1
 URL      : http://mirror.metrocast.net/apache/zookeeper/current/zookeeper-3.4.10.tar.gz
 Source0  : http://mirror.metrocast.net/apache/zookeeper/current/zookeeper-3.4.10.tar.gz
 Source1  : https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar
+Source2  : apache-zookeeper.service
+Source3  : zookeeper.tmpfiles
 Patch0   : 0001-cppunit-config-no-longer-exists-use-pkg-config.patch
 Patch2   : 0002-maven-repo-config.patch
+Patch3   : 0001-Stateless.patch
 Summary  : ZooKeeper python binding library
 Group    : Development/Tools
 License  : Apache-2.0 BSD-3-Clause
@@ -23,6 +26,7 @@ ZooKeeper python binding library
 %setup -q -n zookeeper-3.4.10
 %patch0 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 mkdir %{buildroot}
@@ -37,11 +41,23 @@ mkdir -p %{buildroot}/usr/share/apache-zookeeper
 tar -xf build/zookeeper-3.4.10.tar.gz \
 -C %{buildroot}/usr/share/apache-zookeeper --strip 1
 
+mkdir -p %{buildroot}/usr/lib/systemd/system/
+cp %{SOURCE2} %{buildroot}/usr/lib/systemd/system/apache-zookeeper.service
+
+mkdir -p %{buildroot}/usr/lib/tmpfiles.d/
+cat %{SOURCE3} >> %{buildroot}/usr/lib/tmpfiles.d/apache-zookeeper.conf
+
 # Remove cmd binaries
 rm -rf %{buildroot}/usr/share/apache-zookeeper/bin/*.cmd
 
+mkdir -p %{buildroot}/usr/share/defaults/zookeeper
+mv %{buildroot}/usr/share/apache-zookeeper/conf/* %{buildroot}/usr/share/defaults/zookeeper
+mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/share/defaults/zookeeper/zoo.cfg
+
 %files
 %defattr(-,root,root,-)
+/usr/lib/systemd/system/apache-zookeeper.service
+/usr/lib/tmpfiles.d/apache-zookeeper.conf
 /usr/share/apache-zookeeper/LICENSE.txt
 /usr/share/apache-zookeeper/NOTICE.txt
 /usr/share/apache-zookeeper/README.txt
@@ -52,9 +68,6 @@ rm -rf %{buildroot}/usr/share/apache-zookeeper/bin/*.cmd
 /usr/share/apache-zookeeper/bin/zkEnv.sh
 /usr/share/apache-zookeeper/bin/zkServer.sh
 /usr/share/apache-zookeeper/build.xml
-/usr/share/apache-zookeeper/conf/configuration.xsl
-/usr/share/apache-zookeeper/conf/log4j.properties
-/usr/share/apache-zookeeper/conf/zoo_sample.cfg
 /usr/share/apache-zookeeper/contrib/ZooInspector/build.xml
 /usr/share/apache-zookeeper/contrib/ZooInspector/config/defaultConnectionSettings.cfg
 /usr/share/apache-zookeeper/contrib/ZooInspector/config/defaultNodeVeiwers.cfg
@@ -1694,3 +1707,6 @@ rm -rf %{buildroot}/usr/share/apache-zookeeper/bin/*.cmd
 /usr/share/apache-zookeeper/zookeeper-3.4.10.jar
 /usr/share/apache-zookeeper/zookeeper-3.4.10.jar.md5
 /usr/share/apache-zookeeper/zookeeper-3.4.10.jar.sha1
+/usr/share/defaults/zookeeper/configuration.xsl
+/usr/share/defaults/zookeeper/log4j.properties
+/usr/share/defaults/zookeeper/zoo.cfg

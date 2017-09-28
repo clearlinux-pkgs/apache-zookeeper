@@ -1,0 +1,15 @@
+[Unit]
+Description=Apache Zookeeper server (broker)
+Documentation=https://zookeeper.apache.org/doc/trunk/index.html
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+[Service]
+Type=forking
+User=zookeeper
+Group=zookeeper
+ExecStart=/usr/share/apache-zookeeper/bin/zkServer.sh start
+ExecStop=/usr/share/apache-zookeeper/bin/zkServer.sh stop
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,64 @@
+From 744c7b98976fc4684cdd0ea24bed12b7b81c04a6 Mon Sep 17 00:00:00 2001
+From: Israel Padilla <israel.padilla@intel.com>
+Date: Wed, 27 Sep 2017 22:53:49 +0000
+Subject: [PATCH] Stateless
+
+---
+ bin/zkEnv.sh        | 15 ++++++++-------
+ conf/zoo_sample.cfg |  2 +-
+ 2 files changed, 9 insertions(+), 8 deletions(-)
+
+diff --git a/bin/zkEnv.sh b/bin/zkEnv.sh
+index 43cbc223..a285d8ba 100755
+--- a/bin/zkEnv.sh
++++ b/bin/zkEnv.sh
+@@ -28,11 +28,12 @@ ZOOKEEPER_PREFIX="${ZOOBINDIR}/.."
+ 
+ if [ "x$ZOOCFGDIR" = "x" ]
+ then
+-  if [ -e "${ZOOKEEPER_PREFIX}/conf" ]; then
+-    ZOOCFGDIR="$ZOOBINDIR/../conf"
+-  else
+-    ZOOCFGDIR="$ZOOBINDIR/../etc/zookeeper"
+-  fi
++    if [ -d /etc/zookeeper -a "$(ls -A /etc/zookeeper)" ]
++    then
++        ZOOCFGDIR=/etc/zookeeper
++    else
++        ZOOCFGDIR=/usr/share/defaults/zookeeper
++    fi
+ fi
+ 
+ if [ -f "${ZOOCFGDIR}/zookeeper-env.sh" ]; then
+@@ -53,7 +54,7 @@ fi
+ 
+ if [ "x${ZOO_LOG_DIR}" = "x" ]
+ then
+-    ZOO_LOG_DIR="."
++    ZOO_LOG_DIR="/var/lib/zookeeper/logs"
+ fi
+ 
+ if [ "x${ZOO_LOG4J_PROP}" = "x" ]
+@@ -112,4 +113,4 @@ then
+     CLASSPATH=`cygpath -wp "$CLASSPATH"`
+ fi
+ 
+-#echo "CLASSPATH=$CLASSPATH"
+\ No newline at end of file
++#echo "CLASSPATH=$CLASSPATH"
+diff --git a/conf/zoo_sample.cfg b/conf/zoo_sample.cfg
+index a5a2c0bb..52b7d6f2 100644
+--- a/conf/zoo_sample.cfg
++++ b/conf/zoo_sample.cfg
+@@ -9,7 +9,7 @@ syncLimit=5
+ # the directory where the snapshot is stored.
+ # do not use /tmp for storage, /tmp here is just 
+ # example sakes.
+-dataDir=/tmp/zookeeper
++dataDir=/var/lib/zookeeper/data
+ # the port at which the clients will connect
+ clientPort=2181
+ # the maximum number of client connections.
+-- 
+2.14.1
+
