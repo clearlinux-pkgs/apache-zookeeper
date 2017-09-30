@@ -1,6 +1,6 @@
 Name     : apache-zookeeper
 Version  : 3.4.10
-Release  : 1
+Release  : 2
 URL      : http://mirror.metrocast.net/apache/zookeeper/current/zookeeper-3.4.10.tar.gz
 Source0  : http://mirror.metrocast.net/apache/zookeeper/current/zookeeper-3.4.10.tar.gz
 Source1  : https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar
