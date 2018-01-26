@@ -1,8 +1,8 @@
 Name     : apache-zookeeper
-Version  : 3.4.10
-Release  : 3
-URL      : http://mirror.metrocast.net/apache/zookeeper/current/zookeeper-3.4.10.tar.gz
-Source0  : http://mirror.metrocast.net/apache/zookeeper/current/zookeeper-3.4.10.tar.gz
+Version  : 3.4.11
+Release  : 4
+URL      : https://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz
+Source0  : https://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz
 Source1  : https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar
 Source2  : apache-zookeeper.service
 Source3  : zookeeper.tmpfiles
@@ -23,7 +23,7 @@ BuildRequires : zookeeper-dep
 ZooKeeper python binding library
 
 %prep
-%setup -q -n zookeeper-3.4.10
+%setup -q -n zookeeper-3.4.11
 %patch0 -p1
 %patch2 -p1
 %patch3 -p1
@@ -38,7 +38,7 @@ ant -d -v -DlocalRepoDir=%{buildroot} tar
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/apache-zookeeper
-tar -xf build/zookeeper-3.4.10.tar.gz \
+tar -xf build/zookeeper-3.4.11.tar.gz \
 -C %{buildroot}/usr/share/apache-zookeeper --strip 1
 
 mkdir -p %{buildroot}/usr/lib/systemd/system/
@@ -58,15 +58,15 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 %defattr(-,root,root,-)
 /usr/lib/systemd/system/apache-zookeeper.service
 /usr/lib/tmpfiles.d/apache-zookeeper.conf
-/usr/share/apache-zookeeper/LICENSE.txt
-/usr/share/apache-zookeeper/NOTICE.txt
-/usr/share/apache-zookeeper/README.txt
-/usr/share/apache-zookeeper/README_packaging.txt
 /usr/share/apache-zookeeper/bin/README.txt
 /usr/share/apache-zookeeper/bin/zkCleanup.sh
 /usr/share/apache-zookeeper/bin/zkCli.sh
 /usr/share/apache-zookeeper/bin/zkEnv.sh
 /usr/share/apache-zookeeper/bin/zkServer.sh
+/usr/share/apache-zookeeper/LICENSE.txt
+/usr/share/apache-zookeeper/NOTICE.txt
+/usr/share/apache-zookeeper/README.md
+/usr/share/apache-zookeeper/README_packaging.txt
 /usr/share/apache-zookeeper/build.xml
 /usr/share/apache-zookeeper/contrib/ZooInspector/build.xml
 /usr/share/apache-zookeeper/contrib/ZooInspector/config/defaultConnectionSettings.cfg
@@ -111,11 +111,11 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/contrib/ZooInspector/src/java/org/apache/zookeeper/inspector/manager/ZooInspectorNodeTreeManager.java
 /usr/share/apache-zookeeper/contrib/ZooInspector/src/java/org/apache/zookeeper/inspector/manager/ZooInspectorReadOnlyManager.java
 /usr/share/apache-zookeeper/contrib/ZooInspector/src/java/org/apache/zookeeper/retry/ZooKeeperRetry.java
-/usr/share/apache-zookeeper/contrib/ZooInspector/zookeeper-3.4.10-ZooInspector.jar
+/usr/share/apache-zookeeper/contrib/ZooInspector/zookeeper-3.4.11-ZooInspector.jar
 /usr/share/apache-zookeeper/contrib/fatjar/build.xml
 /usr/share/apache-zookeeper/contrib/fatjar/conf/mainClasses
 /usr/share/apache-zookeeper/contrib/fatjar/src/java/org/apache/zookeeper/util/FatJarMain.java
-/usr/share/apache-zookeeper/contrib/fatjar/zookeeper-3.4.10-fatjar.jar
+/usr/share/apache-zookeeper/contrib/fatjar/zookeeper-3.4.11-fatjar.jar
 /usr/share/apache-zookeeper/contrib/loggraph/build.xml
 /usr/share/apache-zookeeper/contrib/loggraph/src/java/org/apache/zookeeper/graph/FilterException.java
 /usr/share/apache-zookeeper/contrib/loggraph/src/java/org/apache/zookeeper/graph/FilterOp.java
@@ -151,7 +151,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/contrib/loggraph/src/java/org/apache/zookeeper/graph/servlets/NumEvents.java
 /usr/share/apache-zookeeper/contrib/loggraph/src/java/org/apache/zookeeper/graph/servlets/StaticContent.java
 /usr/share/apache-zookeeper/contrib/loggraph/src/java/org/apache/zookeeper/graph/servlets/Throughput.java
-/usr/share/apache-zookeeper/contrib/loggraph/zookeeper-3.4.10-loggraph.jar
+/usr/share/apache-zookeeper/contrib/loggraph/zookeeper-3.4.11-loggraph.jar
 /usr/share/apache-zookeeper/contrib/rest/conf/keys/README
 /usr/share/apache-zookeeper/contrib/rest/conf/keys/rest.cer
 /usr/share/apache-zookeeper/contrib/rest/conf/keys/rest.jks
@@ -180,7 +180,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/contrib/rest/lib/slf4j-log4j12-1.6.1.jar
 /usr/share/apache-zookeeper/contrib/rest/lib/stax-api-1.0-2.jar
 /usr/share/apache-zookeeper/contrib/rest/lib/stax-api-1.0.1.jar
-/usr/share/apache-zookeeper/contrib/rest/zookeeper-3.4.10-rest.jar
+/usr/share/apache-zookeeper/contrib/rest/zookeeper-3.4.11-rest.jar
 /usr/share/apache-zookeeper/contrib/zkfuse/Makefile.am
 /usr/share/apache-zookeeper/contrib/zkfuse/README.txt
 /usr/share/apache-zookeeper/contrib/zkfuse/VERSION
@@ -239,6 +239,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/contrib/zkpython/src/python/setup.py
 /usr/share/apache-zookeeper/contrib/zkpython/src/python/setup.pyc
 /usr/share/apache-zookeeper/contrib/zkpython/src/python/zk.py
+/usr/share/apache-zookeeper/contrib/zkpython/src/python/zk.pyc
 /usr/share/apache-zookeeper/contrib/zkpython/src/test/acl_test.py
 /usr/share/apache-zookeeper/contrib/zkpython/src/test/acl_test.pyc
 /usr/share/apache-zookeeper/contrib/zkpython/src/test/async_test.py
@@ -276,21 +277,21 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/contrib/zktreeutil/src/ZkTreeUtil.h
 /usr/share/apache-zookeeper/contrib/zktreeutil/src/ZkTreeUtilMain.cc
 /usr/share/apache-zookeeper/contrib/zktreeutil/tests/zk_sample.xml
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-javadoc.jar
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-javadoc.jar.md5
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-javadoc.jar.sha1
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-sources.jar
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-sources.jar.md5
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-sources.jar.sha1
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-tests.jar
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-tests.jar.md5
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10-tests.jar.sha1
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10.jar
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10.jar.md5
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10.jar.sha1
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10.pom
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10.pom.md5
-/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.10.pom.sha1
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-javadoc.jar
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-javadoc.jar.md5
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-javadoc.jar.sha1
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-sources.jar
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-sources.jar.md5
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-sources.jar.sha1
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-tests.jar
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-tests.jar.md5
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11-tests.jar.sha1
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11.jar
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11.jar.md5
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11.jar.sha1
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11.pom
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11.pom.md5
+/usr/share/apache-zookeeper/dist-maven/zookeeper-3.4.11.pom.sha1
 /usr/share/apache-zookeeper/docs/api/allclasses-frame.html
 /usr/share/apache-zookeeper/docs/api/allclasses-noframe.html
 /usr/share/apache-zookeeper/docs/api/constant-values.html
@@ -298,6 +299,20 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/api/help-doc.html
 /usr/share/apache-zookeeper/docs/api/index-all.html
 /usr/share/apache-zookeeper/docs/api/index.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/Record.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/class-use/Record.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/generated/package-frame.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/generated/package-summary.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/generated/package-tree.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/generated/package-use.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/package-frame.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/package-summary.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/package-tree.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/compiler/package-use.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/package-frame.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/package-summary.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/package-tree.html
+/usr/share/apache-zookeeper/docs/api/org/apache/jute/package-use.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/AsyncCallback.ACLCallback.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/AsyncCallback.Children2Callback.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/AsyncCallback.ChildrenCallback.html
@@ -333,6 +348,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/KeeperException.UnimplementedException.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/KeeperException.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/ServerAdminClient.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/Transaction.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/WatchedEvent.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/Watcher.Event.EventType.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/Watcher.Event.KeeperState.html
@@ -380,6 +396,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/KeeperException.UnimplementedException.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/KeeperException.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/ServerAdminClient.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/Transaction.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/WatchedEvent.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/Watcher.Event.EventType.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/Watcher.Event.KeeperState.html
@@ -393,11 +410,19 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/ZooKeeper.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/class-use/ZooKeeperMain.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/FourLetterWordMain.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/HostProvider.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/StaticHostProvider.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/class-use/FourLetterWordMain.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/class-use/HostProvider.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/class-use/StaticHostProvider.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/package-frame.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/package-summary.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/package-tree.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/client/package-use.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/common/package-frame.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/common/package-summary.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/common/package-tree.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/common/package-use.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/data/ACL.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/data/Id.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/data/Stat.html
@@ -412,6 +437,10 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/data/package-summary.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/data/package-tree.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/data/package-use.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/jmx/package-frame.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/jmx/package-summary.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/jmx/package-tree.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/jmx/package-use.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/package-frame.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/package-summary.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/package-tree.html
@@ -440,11 +469,18 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/server/upgrade/package-summary.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/server/upgrade/package-tree.html
 /usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/server/upgrade/package-use.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/util/package-frame.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/util/package-summary.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/util/package-tree.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/util/package-use.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/version/util/package-frame.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/version/util/package-summary.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/version/util/package-tree.html
+/usr/share/apache-zookeeper/docs/api/org/apache/zookeeper/version/util/package-use.html
 /usr/share/apache-zookeeper/docs/api/overview-frame.html
 /usr/share/apache-zookeeper/docs/api/overview-summary.html
 /usr/share/apache-zookeeper/docs/api/overview-tree.html
 /usr/share/apache-zookeeper/docs/api/package-list
-/usr/share/apache-zookeeper/docs/api/resources/inherit.gif
 /usr/share/apache-zookeeper/docs/api/script.js
 /usr/share/apache-zookeeper/docs/api/serialized-form.html
 /usr/share/apache-zookeeper/docs/api/stylesheet.css
@@ -534,7 +570,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/jdiff/changes/pkg_org.apache.zookeeper.html
 /usr/share/apache-zookeeper/docs/jdiff/missingSinces.txt
 /usr/share/apache-zookeeper/docs/jdiff/stylesheet-jdiff.css
-/usr/share/apache-zookeeper/docs/jdiff/user_comments_for_zookeeper_3.1.1_to_zookeeper_3.4.10.xml
+/usr/share/apache-zookeeper/docs/jdiff/user_comments_for_zookeeper_3.1.1_to_zookeeper_3.4.11.xml
 /usr/share/apache-zookeeper/docs/linkmap.html
 /usr/share/apache-zookeeper/docs/linkmap.pdf
 /usr/share/apache-zookeeper/docs/recipes.html
@@ -615,15 +651,17 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/docs/zookeeperProgrammers.pdf
 /usr/share/apache-zookeeper/docs/zookeeperQuotas.html
 /usr/share/apache-zookeeper/docs/zookeeperQuotas.pdf
+/usr/share/apache-zookeeper/docs/zookeeperReconfig.pdf
 /usr/share/apache-zookeeper/docs/zookeeperStarted.html
 /usr/share/apache-zookeeper/docs/zookeeperStarted.pdf
 /usr/share/apache-zookeeper/docs/zookeeperTutorial.html
 /usr/share/apache-zookeeper/docs/zookeeperTutorial.pdf
 /usr/share/apache-zookeeper/ivy.xml
 /usr/share/apache-zookeeper/ivysettings.xml
+/usr/share/apache-zookeeper/lib/audience-annotations-0.5.0.jar
 /usr/share/apache-zookeeper/lib/cobertura/README.txt
 /usr/share/apache-zookeeper/lib/jdiff/zookeeper_3.1.1.xml
-/usr/share/apache-zookeeper/lib/jdiff/zookeeper_3.4.10.xml
+/usr/share/apache-zookeeper/lib/jdiff/zookeeper_3.4.11.xml
 /usr/share/apache-zookeeper/lib/jline-0.9.94.LICENSE.txt
 /usr/share/apache-zookeeper/lib/jline-0.9.94.jar
 /usr/share/apache-zookeeper/lib/log4j-1.2.16.LICENSE.txt
@@ -637,7 +675,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/recipes/election/src/java/org/apache/zookeeper/recipes/leader/LeaderElectionSupport.java
 /usr/share/apache-zookeeper/recipes/election/src/java/org/apache/zookeeper/recipes/leader/LeaderOffer.java
 /usr/share/apache-zookeeper/recipes/election/test/org/apache/zookeeper/recipes/leader/LeaderElectionSupportTest.java
-/usr/share/apache-zookeeper/recipes/election/zookeeper-3.4.10-recipes-election.jar
+/usr/share/apache-zookeeper/recipes/election/zookeeper-3.4.11-recipes-election.jar
 /usr/share/apache-zookeeper/recipes/lock/build.xml
 /usr/share/apache-zookeeper/recipes/lock/src/c/INSTALL
 /usr/share/apache-zookeeper/recipes/lock/src/c/LICENSE
@@ -661,7 +699,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/recipes/lock/src/java/org/apache/zookeeper/recipes/lock/ZooKeeperOperation.java
 /usr/share/apache-zookeeper/recipes/lock/test/org/apache/zookeeper/recipes/lock/WriteLockTest.java
 /usr/share/apache-zookeeper/recipes/lock/test/org/apache/zookeeper/recipes/lock/ZNodeNameTest.java
-/usr/share/apache-zookeeper/recipes/lock/zookeeper-3.4.10-recipes-lock.jar
+/usr/share/apache-zookeeper/recipes/lock/zookeeper-3.4.11-recipes-lock.jar
 /usr/share/apache-zookeeper/recipes/queue/build.xml
 /usr/share/apache-zookeeper/recipes/queue/src/c/INSTALL
 /usr/share/apache-zookeeper/recipes/queue/src/c/LICENSE
@@ -680,11 +718,11 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/recipes/queue/src/c/tests/zkServer.sh
 /usr/share/apache-zookeeper/recipes/queue/src/java/org/apache/zookeeper/recipes/queue/DistributedQueue.java
 /usr/share/apache-zookeeper/recipes/queue/test/org/apache/zookeeper/recipes/queue/DistributedQueueTest.java
-/usr/share/apache-zookeeper/recipes/queue/zookeeper-3.4.10-recipes-queue.jar
+/usr/share/apache-zookeeper/recipes/queue/zookeeper-3.4.11-recipes-queue.jar
 /usr/share/apache-zookeeper/src/LICENSE.txt
 /usr/share/apache-zookeeper/src/NOTICE.txt
+/usr/share/apache-zookeeper/src/c/CMakeLists.txt
 /usr/share/apache-zookeeper/src/c/ChangeLog
-/usr/share/apache-zookeeper/src/c/Cli.vcproj
 /usr/share/apache-zookeeper/src/c/INSTALL
 /usr/share/apache-zookeeper/src/c/LICENSE
 /usr/share/apache-zookeeper/src/c/Makefile.am
@@ -700,6 +738,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/c/autom4te.cache/traces.0
 /usr/share/apache-zookeeper/src/c/autom4te.cache/traces.1
 /usr/share/apache-zookeeper/src/c/c-doc.Doxyfile
+/usr/share/apache-zookeeper/src/c/cmake_config.h.in
 /usr/share/apache-zookeeper/src/c/compile
 /usr/share/apache-zookeeper/src/c/config.guess
 /usr/share/apache-zookeeper/src/c/config.h.in
@@ -712,7 +751,6 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/c/include/proto.h
 /usr/share/apache-zookeeper/src/c/include/recordio.h
 /usr/share/apache-zookeeper/src/c/include/winconfig.h
-/usr/share/apache-zookeeper/src/c/include/winstdint.h
 /usr/share/apache-zookeeper/src/c/include/zookeeper.h
 /usr/share/apache-zookeeper/src/c/include/zookeeper_log.h
 /usr/share/apache-zookeeper/src/c/include/zookeeper_version.h
@@ -765,8 +803,6 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/c/tests/wrappers-mt.opt
 /usr/share/apache-zookeeper/src/c/tests/wrappers.opt
 /usr/share/apache-zookeeper/src/c/tests/zkServer.sh
-/usr/share/apache-zookeeper/src/c/zookeeper.sln
-/usr/share/apache-zookeeper/src/c/zookeeper.vcproj
 /usr/share/apache-zookeeper/src/contrib/build-contrib.xml
 /usr/share/apache-zookeeper/src/contrib/build.xml
 /usr/share/apache-zookeeper/src/contrib/fatjar/README.txt
@@ -997,6 +1033,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/contrib/zkpython/src/python/setup.py
 /usr/share/apache-zookeeper/src/contrib/zkpython/src/python/setup.pyc
 /usr/share/apache-zookeeper/src/contrib/zkpython/src/python/zk.py
+/usr/share/apache-zookeeper/src/contrib/zkpython/src/python/zk.pyc
 /usr/share/apache-zookeeper/src/contrib/zkpython/src/test/acl_test.py
 /usr/share/apache-zookeeper/src/contrib/zkpython/src/test/acl_test.pyc
 /usr/share/apache-zookeeper/src/contrib/zkpython/src/test/async_test.py
@@ -1186,7 +1223,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/java/generated/org/apache/zookeeper/version/Info.java
 /usr/share/apache-zookeeper/src/java/lib/cobertura/README.txt
 /usr/share/apache-zookeeper/src/java/lib/jdiff/zookeeper_3.1.1.xml
-/usr/share/apache-zookeeper/src/java/lib/jdiff/zookeeper_3.4.10.xml
+/usr/share/apache-zookeeper/src/java/lib/jdiff/zookeeper_3.4.11.xml
 /usr/share/apache-zookeeper/src/java/lib/jline-0.9.94.LICENSE.txt
 /usr/share/apache-zookeeper/src/java/lib/log4j-1.2.16.LICENSE.txt
 /usr/share/apache-zookeeper/src/java/lib/slf4j-1.6.1.LICENSE.txt
@@ -1269,6 +1306,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/java/main/org/apache/zookeeper/common/IOUtils.java
 /usr/share/apache-zookeeper/src/java/main/org/apache/zookeeper/common/PathTrie.java
 /usr/share/apache-zookeeper/src/java/main/org/apache/zookeeper/common/PathUtils.java
+/usr/share/apache-zookeeper/src/java/main/org/apache/zookeeper/common/Time.java
 /usr/share/apache-zookeeper/src/java/main/org/apache/zookeeper/jmx/CommonNames.java
 /usr/share/apache-zookeeper/src/java/main/org/apache/zookeeper/jmx/MBeanRegistry.java
 /usr/share/apache-zookeeper/src/java/main/org/apache/zookeeper/jmx/ManagedUtil.java
@@ -1417,6 +1455,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/java/systest/org/apache/zookeeper/test/system/QuorumPeerInstance.java
 /usr/share/apache-zookeeper/src/java/systest/org/apache/zookeeper/test/system/SimpleClient.java
 /usr/share/apache-zookeeper/src/java/systest/org/apache/zookeeper/test/system/SimpleSysTest.java
+/usr/share/apache-zookeeper/src/java/test/bin/check_compatibility.py
 /usr/share/apache-zookeeper/src/java/test/bin/test-github-pr.sh
 /usr/share/apache-zookeeper/src/java/test/bin/test-patch.properties
 /usr/share/apache-zookeeper/src/java/test/bin/test-patch.sh
@@ -1452,11 +1491,13 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/MultiResponseTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/MultiTransactionRecordTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/PortAssignment.java
+/usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/SaslAuthTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/ServerConfigTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/TestableZooKeeper.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/VerGenTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/ZKTestCase.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/ZooKeeperTest.java
+/usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/common/TimeTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/CRCTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/DataNodeTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/DataTreeTest.java
@@ -1481,6 +1522,7 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/ZooKeeperThreadTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/ZxidRolloverTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/quorum/CnxManagerTest.java
+/usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/quorum/EphemeralNodeDeletionTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/quorum/FLEBackwardElectionRoundTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/quorum/FLECompatibilityTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/server/quorum/FLEDontCareTest.java
@@ -1573,7 +1615,6 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/test/SaslAuthFailNotifyTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/test/SaslAuthFailTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/test/SaslAuthMissingClientConfigTest.java
-/usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/test/SaslAuthTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/test/SaslClientTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/test/SessionInvalidationTest.java
 /usr/share/apache-zookeeper/src/java/test/org/apache/zookeeper/test/SessionTest.java
@@ -1659,9 +1700,9 @@ mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/sha
 /usr/share/apache-zookeeper/src/recipes/queue/src/java/org/apache/zookeeper/recipes/queue/DistributedQueue.java
 /usr/share/apache-zookeeper/src/recipes/queue/test/org/apache/zookeeper/recipes/queue/DistributedQueueTest.java
 /usr/share/apache-zookeeper/src/zookeeper.jute
-/usr/share/apache-zookeeper/zookeeper-3.4.10.jar
-/usr/share/apache-zookeeper/zookeeper-3.4.10.jar.md5
-/usr/share/apache-zookeeper/zookeeper-3.4.10.jar.sha1
+/usr/share/apache-zookeeper/zookeeper-3.4.11.jar
+/usr/share/apache-zookeeper/zookeeper-3.4.11.jar.md5
+/usr/share/apache-zookeeper/zookeeper-3.4.11.jar.sha1
 /usr/share/defaults/zookeeper/configuration.xsl
 /usr/share/defaults/zookeeper/log4j.properties
 /usr/share/defaults/zookeeper/zoo.cfg
