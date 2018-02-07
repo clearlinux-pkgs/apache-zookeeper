@@ -1,6 +1,6 @@
 Name     : apache-zookeeper
 Version  : 3.4.11
-Release  : 6
+Release  : 7
 URL      : https://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz
 Source0  : https://archive.apache.org/dist/zookeeper/zookeeper-3.4.11/zookeeper-3.4.11.tar.gz
 Source1  : https://repo1.maven.org/maven2/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar
