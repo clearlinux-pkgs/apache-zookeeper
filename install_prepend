@@ -1,0 +1,11 @@
+rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/apache-zookeeper
+tar -xf build/zookeeper-3.4.14.tar.gz \
+-C %{buildroot}/usr/share/apache-zookeeper --strip 1
+
+# Remove cmd binaries
+rm -rf %{buildroot}/usr/share/apache-zookeeper/bin/*.cmd
+
+mkdir -p %{buildroot}/usr/share/defaults/zookeeper
+mv %{buildroot}/usr/share/apache-zookeeper/conf/* %{buildroot}/usr/share/defaults/zookeeper
+mv %{buildroot}/usr/share/defaults/zookeeper/zoo_sample.cfg %{buildroot}/usr/share/defaults/zookeeper/zoo.cfg

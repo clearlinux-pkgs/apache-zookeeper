@@ -1,2 +1,23 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
+mvn-bouncycastle
+mvn-directory-ldap-api
+mvn-directory-jdbm
+mvn-directory-mavibot
+mvn-directory-project
+mvn-directory-server
+mvn-ehcache
+mvn-hamcrest
+mvn-ivy
+mvn-javax-servlet
+mvn-jline
+mvn-log4j
+mvn-mina
+mvn-mockito
+mvn-netty
+mvn-oss-parents
+mvn-ow2
+mvn-treelayout
+mvn-slf4j
+mvn-spotbugs
+mvn-yetus

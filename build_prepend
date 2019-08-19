@@ -1,0 +1,1 @@
+cp /usr/share/java/.m2/repository/org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar zookeeper-server/src/main/resources/lib/ivy-2.4.0.jar
